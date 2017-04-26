@@ -14,9 +14,11 @@ BA workflow starts by working on the Zeppelin notebook [tools/zeppelin/Demo.json
 * optional transform-check
 * optional report
 
-The notebook can be imported via Zeppelin home page -> "Import note" -> "Choose a JSON here", and exported via ![export-button](tools/image/export.png) from the actual notebook page.
+The notebook can be imported via Zeppelin home page -> "Import note" -> "Choose a JSON here", and exported from the notebook page via:
+![export-button](tools/image/export.png)
 
-BA notebook must be runnable via ![run-all-button](tools/image/run-all.png).
+BA notebook must be runnable via:
+![run-all-button](tools/image/run-all.png)
 
 Once satisfied with the notebook, BA dissects it into:
 
