@@ -1,5 +1,4 @@
 -- transform - minor_purchase
---CREATE OR REPLACE TEMPORARY VIEW minor_purchase AS
 SELECT i.id,
        i.name,
        totals.sold_to_minors

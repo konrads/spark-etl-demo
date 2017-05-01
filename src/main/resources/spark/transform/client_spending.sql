@@ -1,5 +1,4 @@
 -- transform - client_spending
---CREATE OR REPLACE TEMPORARY VIEW client_spending AS
 SELECT c.id,
        c.name,
        totals.total_spending

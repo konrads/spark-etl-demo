@@ -1,5 +1,4 @@
 -- transform - item_purchase
---CREATE OR REPLACE TEMPORARY VIEW item_purchase AS
 SELECT i.id,
        i.name,
        totals.total_purchase
