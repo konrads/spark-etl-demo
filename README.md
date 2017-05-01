@@ -1,6 +1,8 @@
 spark-etl-demo
 ==============
 
+Build status (master): [![Build Status](https://travis-ci.org/konrads/spark-etl-demo.svg?branch=master)](https://travis-ci.org/konrads/spark-etl-demo)
+
 Demo for spark-etl, as driven by BAs and Devs.
 
 BA process
