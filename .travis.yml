@@ -2,4 +2,4 @@ language: scala
 scala:
 - 2.11.8
 script:
-- sbt spark_tools/run
+- sbt ++$TRAVIS_SCALA_VERSION test spark_tools/run
