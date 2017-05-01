@@ -1,49 +1,33 @@
 extracts:
   - name:  client
-    type:  parquet
     uri:   "data/${env}/client_2017"
-    check:
-      uri: "/spark/extract-check/client.sql"
-  - name: item
-    type: parquet
-    uri:  "data/${env}/item_2017"
-    check:
-      uri: "/spark/extract-check/item.sql"
-  - name: transaction
-    type: parquet
-    uri:  "data/${env}/transaction_2017"
-    check:
-      uri: "/spark/extract-check/transaction.sql"
+    check: "/spark/extract-check/client.sql"
+  - name:  item
+    uri:   "data/${env}/item_2017"
+    check: "/spark/extract-check/item.sql"
+  - name:  transaction
+    uri:   "data/${env}/transaction_2017"
+    check: "/spark/extract-check/transaction.sql"
   # unused extract
-  - name: ____bogus_extract_not_loaded____
-    type: parquet
-    uri:  "hdfs://aaa.bbb"
+  - name:  ____bogus_extract_not_loaded____
+    uri:   "hdfs://aaa.bbb"
 
 transforms:
-  - name: client_spending
-    check:
-      uri: "/spark/transform-check/client_spending.sql"
-    sql:
-      uri: "/spark/transform/client_spending.sql"
+  - name:  client_spending
+    check: "/spark/transform-check/client_spending.sql"
+    sql:   "/spark/transform/client_spending.sql"
     output:
-      type: parquet
       uri:  "/tmp/out/client_spending"
       # no partition_by
-  - name: item_purchase
-    check:
-      uri: "/spark/transform-check/item_purchase.sql"
-    sql:
-      uri: "/spark/transform/item_purchase.sql"
+  - name:  item_purchase
+    check: "/spark/transform-check/item_purchase.sql"
+    sql:   "/spark/transform/item_purchase.sql"
     output:
-      type: parquet
       uri:  "/tmp/out/item_purchase"
       # no partition_by
-  - name: minor_purchase
-    check:
-      uri: "/spark/transform-check/minor_purchase.sql"
-    sql:
-      uri: "/spark/transform/minor_purchase.sql"
+  - name:  minor_purchase
+    check: "/spark/transform-check/minor_purchase.sql"
+    sql:   "/spark/transform/minor_purchase.sql"
     output:
-      type: parquet
       uri:  "/tmp/out/minor_purchase"
       # no partition_by
