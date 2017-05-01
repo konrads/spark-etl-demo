@@ -36,10 +36,10 @@ lazy val spark_tools = (project in file("."))
 
     scalaVersion := "2.11.8",
 
-    mainClass in Compile := Some("spark_etl.MainSbt"),
-    
+    mainClass in Compile := Some("spark_etl.Main"),
+
     validateConf := Def.taskDyn {
-      (run in Runtime).toTask("")
+      (run in Runtime).toTask(" validate-local -Denv.env=dev")
     }.value
   )
   .dependsOn(sparkEtl)
