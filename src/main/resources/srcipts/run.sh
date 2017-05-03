@@ -102,7 +102,7 @@ usage() {
   log_bold "    help"
   log_bold "    validate-local"
   log_bold "    validate-remote"
-  log_bold "    transform"
+  log_bold "    transform-load"
   log_bold "    extract-check"
   log_bold "    transform-check"
   exit 1
@@ -120,7 +120,7 @@ case "$trail_arg" in
     log_bold "Validating remote aspects..."
     java -cp $JAR:$OTHER_CP $MAIN_CLASS $@
     ;;
-  "transform")
+  "transform-load")
     log_bold "Run and persist transform..."
     check_package_logs
     YARN_CONF_DIR=$HADOOP_CONF_DIR eval $CMD $@ 2>&1 | tee .current_local.log
