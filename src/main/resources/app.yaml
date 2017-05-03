@@ -16,18 +16,23 @@ transforms:
   - name:  client_spending
     check: "/spark/transform-check/client_spending.sql"
     sql:   "/spark/transform/client_spending.sql"
-    output:
-      uri:  "/tmp/out/client_spending"
-      # no partition_by
   - name:  item_purchase
     check: "/spark/transform-check/item_purchase.sql"
     sql:   "/spark/transform/item_purchase.sql"
-    output:
-      uri:  "/tmp/out/item_purchase"
-      # no partition_by
   - name:  minor_purchase
     check: "/spark/transform-check/minor_purchase.sql"
     sql:   "/spark/transform/minor_purchase.sql"
-    output:
-      uri:  "/tmp/out/minor_purchase"
-      # no partition_by
+
+loads:
+  - name:   client_spending_out
+    source: client_spending
+    uri:    "/tmp/out/client_spending"
+    # no partition_by
+  - name:   item_purchase_out
+    source: item_purchase
+    uri:    "/tmp/out/item_purchase"
+    # no partition_by
+  - name:   minor_purchase_out
+    source: minor_purchase
+    uri:    "/tmp/out/minor_purchase"
+    # no partition_by
