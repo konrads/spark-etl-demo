@@ -1,31 +1,57 @@
 spark-etl-demo
 ==============
 
-Build status (master): [![Build Status](https://travis-ci.org/konrads/spark-etl-demo.svg?branch=master)](https://travis-ci.org/konrads/spark-etl-demo)
+Suggested ba-dev-ops interactions
+---------------------------------
 
-Demo for spark-etl, as driven by BAs and Devs.
+### BA:
+BA works off the [sql directory in BA branch](tree/BA), populating only [app.yaml config](tree/BA/src/main/resources/app.yaml) and [resource SQLs](tree/BA/src/main/resources). When done, these are merged into master by developer.
 
-BA process
-----------
+### Developer:
+Developer merges [BA branch](tree/BA) into `master`. Developer initiates the `build`, ensuring `sbt validate-conf test` target passes, as that validates config/SQL, as well as any code tests. This sbt target should also be run within CI, see [.travis.yml](.travis.yml).
+The code can then build and published on Spark cluster environment.
 
-BA workflow starts by working on the Zeppelin notebook [tools/zeppelin/Demo.json](tools/zeppelin/Demo.json) which constitutes a Specification. BA fills in the notebook with:
+This project utilizes library [spark-etl](https://github.com/konrads/spark-etl), please look there for more information.
 
-* mapping of extract locations
-* transform SQLs
-* optional extract-check
-* optional transform-check
+### Ops:
+Once the releasable artefacts are deployed to Spark cluster environment, run with [run.sh](src/main/resources/run.sh):
+```
+> ./run.sh
+  Usage:
+    help
+    validate-local
+    validate-remote
+    transform-load
+    extract-check
+    transform-check
+```
 
-The notebook can be imported via Zeppelin home page -> "Import note" -> "Choose a JSON here", and exported from the notebook page via:
-![export-button](tools/image/export.png)
+*Always* start by running validations:
+```
+> # check config and SQL
+> ./run.sh -Denv.env=<env> validate-local
 
-BA notebook must be runnable via:
-![run-all-button](tools/image/run-all.png)
+> # check hdfs paths, other remote connectivity
+> ./run.sh -Denv.env=<env> validate-remote
+```
 
-Once satisfied with the notebook, BA dissects it into:
+To run transform and persist results:
+```
+> ./run.sh -Denv.env=<env> transform-load
+```
 
-* [app.yaml](src/main/resources/app.yaml) - config listing extracts with locations, and transform SQL URIs. Note, extract locations support `${env_vars}`, whilst transform URIs are relative to [src/main/resources](src/main/resources)
-* [transform](src/main/resources/spark/transform) SQLs
-* optional [extract-check](src/main/resources/spark/extract-check) SQLs
-* optional [transform-check](src/main/resources/spark/transform-check) SQLs
+To fetch yarn logs after the job is run, set `PACKAGE_LOGS=true`. *Note: not for production!*
+```
+> export PACKAGE_LOGS=true
+> ./run.sh -Denv.env=<env> transform-load
 
-Finally, BA performs pull request, which once accepted, will result in a new build. The build validates config and SQL syntax and will fail if detects errors.
+> # list zipped up logs (from driver and from the cluster)
+> ls logs/current
+logs_application_XXXXXXXXXXXXX_YYYYYY.zip
+
+> cd logs/current
+> unzip logs_application_XXXXXXXXXXXXX_YYYYYY.zip
+Archive:  logs_application_XXXXXXXXXXXXX_YYYYYY.zip
+  inflating: application_XXXXXXXXXXXXX_YYYYYY.local.log
+  inflating: application_XXXXXXXXXXXXX_YYYYYY.remote.log
+```
