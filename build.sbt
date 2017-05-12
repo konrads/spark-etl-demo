@@ -24,18 +24,14 @@ lazy val root = Project("root", file("."))
   )
 
 lazy val validateConf = inputKey[Unit]("validate config")
-lazy val spark_tools = (project in file("."))
+lazy val spark_etl = (project in file("."))
   .settings(
-    name := "spark_tools",
-
+    name := "spark_etl",
     scalaVersion := "2.11.8",
-
-    // FIXME: hardcoded params in sbt only class: mainClass in Compile := Some("spark_etl.Main"),
-    mainClass in Compile := Some("spark_etl.MainSbt"),
-
+    mainClass in Compile := Some("spark_etl.Main"),
     validateConf := Def.taskDyn {
-      // FIXME: should take params here: (run in Runtime).toTask(" -Denv.env=dev validate-local")
-      (run in Runtime).toTask("")
+      (run in Runtime).toTask(" -Denv.env=__env__ validate-local")
     }.value
   )
   .dependsOn(sparkEtl)
+addCommandAlias("validate-conf", "; spark_etl/validateConf")
