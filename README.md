@@ -29,21 +29,21 @@ Once the releasable artefacts are deployed to Spark cluster environment, run wit
 *Always* start by running validations:
 ```
 > # check config and SQL
-> ./run.sh -Denv.env=<env> validate-local
+> ./run.sh -Denv.path=<root> validate-local
 
 > # check hdfs paths, other remote connectivity
-> ./run.sh -Denv.env=<env> validate-remote
+> ./run.sh -Denv.path=<root> validate-remote
 ```
 
 To run transform and persist results:
 ```
-> ./run.sh -Denv.env=<env> transform-load
+> ./run.sh -Denv.path=<root> transform-load
 ```
 
 To fetch yarn logs after the job is run, set `PACKAGE_LOGS=true`. *Note: not for production!*
 ```
 > export PACKAGE_LOGS=true
-> ./run.sh -Denv.env=<env> transform-load
+> ./run.sh -Denv.path=<root> transform-load
 
 > # list zipped up logs (from driver and from the cluster)
 > ls logs/current
