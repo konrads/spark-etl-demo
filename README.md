@@ -69,3 +69,10 @@ sbt genDot
 dot -Tgif src/main/lineage/lineage.dot -o src/main/lineage/lineage.gif
 ```
 ![dot-lineage](src/main/lineage/lineage.gif)
+
+#### Legend
+* ellipse = extract
+* component = transform
+* cylinder = load
+* full line = relationship configured explicitly
+* dotted line = relationship derived from SQL
