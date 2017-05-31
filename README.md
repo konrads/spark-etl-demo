@@ -59,3 +59,13 @@ Archive:  logs_application_XXXXXXXXXXXXX_YYYYYY.zip
   inflating: application_XXXXXXXXXXXXX_YYYYYY.local.log
   inflating: application_XXXXXXXXXXXXX_YYYYYY.remote.log
 ```
+
+Lineage
+-------
+Following lineage/dependency graph was generated via:
+```
+sbt genDot
+# after graphviz install, eg. brew install graphviz
+dot -Tgif src/main/lineage/lineage.dot -o src/main/lineage/lineage.gif
+```
+![dot-lineage](src/main/lineage/lineage.gif)
