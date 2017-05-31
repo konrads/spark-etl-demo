@@ -70,9 +70,9 @@ dot -Tgif src/main/lineage/lineage.dot -o src/main/lineage/lineage.gif
 ```
 ![dot-lineage](src/main/lineage/lineage.gif)
 
-#### Legend
-* ellipse = extract
-* component = transform
-* cylinder = load
-* full line = relationship configured explicitly
-* dotted line = relationship derived from SQL
+##### Legend
+* <sub>ellipse = extract</sub>
+* <sub>component = transform</sub>
+* <sub>cylinder = load</sub>
+* <sub>full line = relationship configured explicitly</sub>
+* <sub>dotted line = relationship derived from SQL</sub>
