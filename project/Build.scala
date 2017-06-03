@@ -1,9 +1,11 @@
 // Enables running with spark dependencies, as per:
 // http://apache-spark-user-list.1001560.n3.nabble.com/libraryDependencies-configuration-is-different-for-sbt-assembly-vs-sbt-run-td565.html
+
 import dependencies.deps
 import sbtassembly.AssemblyKeys._
 import sbt._
 import Keys._
+
 object ApplicationBuild extends Build {
 
   val Unprovided = config("unprovided") extend Runtime
@@ -11,7 +13,6 @@ object ApplicationBuild extends Build {
   val root = project.in(file(".")).
     configs(Unprovided).
     settings(
-      name := "validator",
       libraryDependencies ++= deps.map {
         case d if d.configurations == Some("provided") => d.copy(configurations=Some("unprovided"))
         case other => other

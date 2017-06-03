@@ -2,6 +2,7 @@ import dependencies.deps
 
 lazy val validateConf = taskKey[Unit]("validate config")
 lazy val genDot = taskKey[Unit]("generate dot")
+name := "spark-etl-demo"
 scalaVersion := "2.11.8"
 mainClass in Compile := Some("spark_etl.Main")
 scalacOptions ++= Seq("-deprecation", "-feature")
