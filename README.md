@@ -17,6 +17,11 @@ The code can then build and published on Spark cluster environment.
 
 This project utilizes library [spark-etl](https://github.com/konrads/spark-etl), please look there for more information.
 
+*Note*: to reduce the size of fatjar, unused dependencies (joda-time & co) have been identified and pruned thanks to `net.virtual-void:sbt-dependency-graph` plugin:
+```
+sbt dependencyTree
+```
+
 ### Ops:
 Once the releasable artefacts are deployed to Spark cluster environment, run with [run.sh](src/main/resources/run.sh):
 ```
