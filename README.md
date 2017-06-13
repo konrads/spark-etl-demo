@@ -12,7 +12,7 @@ Suggested ba-dev-ops interactions
 BA works off the [sql directory in BA branch](../../tree/BA), populating only [app.yaml config](../../tree/BA/src/main/resources/app.yaml) and [resource SQLs](../../tree/BA/src/main/resources). When done, these are merged into master by developer.
 
 ### Dev:
-Developer merges [BA branch](../../tree/BA) into `master`. Developer initiates the `build`, ensuring `sbt test` target passes, as that validates config/SQL, as well as any code tests. This sbt target should also be run within CI, see [.travis.yml](.travis.yml).
+Developer merges [BA branch](../../tree/BA) into `master`, potentially using `sbt stripPrefixes` target to remove any hive schema references. Developer initiates the `build`, ensuring `sbt test` target passes, as that validates config/SQL, as well as any code tests. This sbt target should also be run within CI, see [.travis.yml](.travis.yml).
 The code can then build and published on Spark cluster environment.
 
 This project utilizes library [spark-etl](https://github.com/konrads/spark-etl), please look there for more information.
