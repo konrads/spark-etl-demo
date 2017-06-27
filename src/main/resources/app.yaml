@@ -1,12 +1,12 @@
 extracts:
   - name:  client
-    uri:   "data/${path}/client_2017"
+    uri:   "data/${path}/client_2017/day=${yyyy-MM-dd-1d}"
     check: "/spark/extract-check/client.sql"
   - name:  item
     uri:   "data/${path}/item_2017"
     check: "/spark/extract-check/item.sql"
   - name:  transaction
-    uri:   "data/${path}/transaction_2017"
+    uri:   "data/${path}/transaction_2017/year=${y-1d}/month=${m-1d}"
     check: "/spark/extract-check/transaction.sql"
   # unused extract
   - name:  ____bogus_extract_not_loaded____
