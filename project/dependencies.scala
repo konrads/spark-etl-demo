@@ -1,7 +1,7 @@
 import sbt._
 
 object dependencies {
-  val sparkVsn  = "2.0.1"
+  val sparkVsn  = "2.3.0"
 
   val deps =
     Seq(
